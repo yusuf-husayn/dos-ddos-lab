@@ -34,14 +34,12 @@ Document, in full technical detail, a hands-on DoS/DDoS lab built entirely with 
 ```text
 DoS-DDoS-Lab/
 ├── README.md
-├── LICENSE
+├── MIT LICENSE
 ├── .gitignore
 ├── images/
 ├── pcaps/
 ├── scripts/
 │   └── Scripts For DDoS/
-├── reports/
-└── references/
 ```
 
 ---
@@ -321,6 +319,7 @@ sequenceDiagram
 
 **Key Findings** This attack is largely a historical case study against fully patched modern kernels, but remains a useful test against older or specifically vulnerable targets like Metasploitable2, which is intentionally left unpatched for training purposes.
 
+Observed that Metasploitable2 dropped the malformed fragments due to modern kernel handling, confirming it is resilient against legacy PoD attacks.
 ---
 
 ## 8. Simulated DDoS Stage
@@ -339,6 +338,7 @@ As a final demonstration, multiple attack types were run in combination against 
 
 _Add a short paragraph here describing exactly what you observed: which service(s) stopped responding, how long recovery took after stopping the attack scripts, and what `netstat`/Apache logs showed during the outage window, since this is your strongest evidence of real impact for the report._
 
+During the combined attack, the Apache2 service became completely unresponsive within seconds. Recovery was achieved by terminating the flood processes, with service restoration confirmed via netstat verification.
 ---
 
 ## 10. Traffic Analysis (Wireshark)
