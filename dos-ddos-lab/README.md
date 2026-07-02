@@ -480,6 +480,8 @@ For internet-facing production services, routing traffic through a cloud defense
 
 ## 17. Packet Capture Index
 
+> **📥 Download Raw PCAP Files:** Due to GitHub's file size limits (files exceed 2.7 GB), the raw packet captures for all lab stages have been hosted externally. You can view and download them here: https://drive.google.com/drive/folders/1-iTdr49YMJAuqd9PS4xHblitj7w09v_2?usp=sharing
+
 |File|Stage|
 |---|---|
 |`00-baseline.pcapng`|Pre-attack baseline traffic|
