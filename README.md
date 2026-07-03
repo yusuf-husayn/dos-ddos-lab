@@ -647,6 +647,12 @@ The objective of the laboratory was to analyze attack behavior, traffic characte
 
 This project built a complete, self-contained DoS/DDoS lab using only Kali Linux and Metasploitable2, covering five distinct attack primitives — ICMP flood, SYN flood, HTTP flood, TCP flood, and Ping of Death — each tested first as a single-source DoS and then as a locally simulated multi-process DDoS via `tmux`. Every stage was captured independently in Wireshark and compared against a clean baseline, allowing clear identification of each attack's traffic signature at Layer 3, 4, and 7. A combined-attack stage demonstrated cumulative impact on service availability. The project closes with a concrete, honest limitation — the DDoS stage simulates volume rather than true source distribution — and a set of practical next steps (multi-host testing, WAF deployment, IDS signature evaluation) to extend the work further.
 
+## Interactive Notes
+
+An interactive version of this project, including detailed study notes, explanations, and supplementary material, is available on Notion.
+
+🔗 [View the Notion Documentation](https://stellar-triangle-829.notion.site/DoS-DDoS-Attack-Fundamentals-Project-3914bb03d98b80fa824aecc78af4e580?source=copy_link)
+
 ---
 
 ## 19. References
