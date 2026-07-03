@@ -453,6 +453,14 @@ Each attack type above was re-run using its corresponding `*-ddos-script.sh`, wh
 
 Each DDoS-stage script was terminated cleanly after capture with `tmux kill-session -t ddos_simulation` (or `tmux kill-server` where multiple sessions were used), before moving to the next attack type, to avoid cross-contaminating captures between stages.
 
+<p align="center">
+  <img src="images/18-simulated-ddos-service-timeout.png" alt="Simulated DDoS Service Timeout" width="900">
+</p>
+
+<p align="center">
+  <em>Figure 18. Multiple concurrent <code>hping3</code> processes executing in parallel during the simulated DDoS stage. The Apache web service became temporarily unavailable, resulting in a browser connection timeout while the target operating system remained operational.</em>
+</p>
+
 ---
 
 ## 9. Combined Attack — Service Outage
@@ -460,11 +468,11 @@ Each DDoS-stage script was terminated cleanly after capture with `tmux kill-sess
 As a final demonstration, multiple attack types were run in combination against Metasploitable2 to observe cumulative impact on service availability.
 
 <p align="center">
-  <img src="images/18-combined-attack.png" alt="Combined Attack Service Outage" width="850">
+  <img src="images/19-combined-attack.png" alt="Combined Attack Service Outage" width="850">
 </p>
 
 <p align="center">
-  <em>Figure 18. Combined attack scenario resulting in degraded Apache2 service availability on the target system.</em>
+  <em>Figure 19. Combined attack scenario resulting in degraded Apache2 service availability on the target system.</em>
 </p>
 
 During the combined attack, the Apache2 service became temporarily unavailable to legitimate clients within seconds. Recovery was achieved by terminating the flood processes, with service restoration confirmed using `netstat`.
@@ -559,6 +567,7 @@ For internet-facing production services, routing traffic through a cloud defense
 - Analyze the same captures with Zeek and compare detection against manual Wireshark filtering.
 - Evaluate Suricata/Snort signatures against the saved `.pcapng` files.
 - Add response-time/latency measurements (e.g. `curl -w`) captured during each attack stage as a quantitative impact metric.
+- Collect CPU, memory, and network utilization metrics from both the attacker and victim hosts during each attack stage to quantitatively evaluate resource exhaustion and service impact.
 
 ---
 
@@ -598,7 +607,10 @@ For internet-facing production services, routing traffic through a cloud defense
 |15|`15-pod-dos.png`|Ping of Death — Single Source|
 |16|`16-pod-ddos-script.png`|Ping of Death DDoS Script Execution|
 |17|`17-pod-ddos.png`|Ping of Death — Simulated Multi-Source|
-|18|`18-combined-attack.png`|Combined Attack — Service Outage|
+|18| `18-simulated-ddos-service-timeout.png`| Simulated DDoS — Browser Timeout During Concurrent Attack|
+|19|`19-combined-attack.png`|Combined Attack — Service Outage|
+
+
 
 ---
 
@@ -607,9 +619,9 @@ For internet-facing production services, routing traffic through a cloud defense
 > [!NOTE]
 > The raw packet capture files generated during this project are not stored in this repository because the complete capture set exceeds GitHub's practical repository size limits.
 >
-> **Download the complete PCAP collection:**
->
-> https://drive.google.com/drive/folders/1-iTdr49YMJAuqd9PS4xHblitj7w09v_2?usp=sharing
+**Download the complete PCAP collection:**
+
+[Google Drive – Complete PCAP Collection](https://drive.google.com/drive/folders/1-iTdr49YMJAuqd9PS4xHblitj7w09v_2?usp=sharing)
 
 |File|Stage|
 |---|---|
