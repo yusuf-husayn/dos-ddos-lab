@@ -303,7 +303,7 @@ sequenceDiagram
 **Impact** Exhaustion of the server's connection queue, which can block or slow new legitimate connections.
 
 **Wireshark Analysis** <p align="center">
-  <img src="images/05-syn-flood.png" alt="SYN Flood DoS" width="850">
+  <img src="images/05-syn-dos.png" alt="SYN Flood DoS" width="850">
 </p>
 
 <p align="center">
@@ -595,7 +595,7 @@ For internet-facing production services, routing traffic through a cloud defense
 |02|`02-icmp-dos.png`|ICMP Flood — Single Source|
 |03|`03-icmp-ddos-script.png`|ICMP DDoS Script Execution|
 |04|`04-icmp-ddos.png`|ICMP Flood — Simulated Multi-Source|
-|05|`05-syn-flood.png`|SYN Flood — Single Source|
+|05|`05-syn-dos.png`|SYN Flood — Single Source|
 |06|`06-syn-ddos-script.png`|SYN DDoS Script Execution|
 |07|`07-syn-ddos.png`|SYN Flood — Simulated Multi-Source|
 |08|`08-http-dos.png`|HTTP Flood — Single Source|
