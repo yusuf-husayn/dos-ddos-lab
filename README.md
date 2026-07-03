@@ -2,7 +2,7 @@
 
 Traffic Analysis • Wireshark • hping3 • Bash & Python Automation • TCP/IP
 
-![Platform](https://img.shields.io/badge/Platform-Linux-blue) ![Wireshark](https://img.shields.io/badge/Wireshark-Traffic%20Analysis-blue) ![hping3](https://img.shields.io/badge/hping3-Traffic%20Generation-orange) ![License](https://img.shields.io/badge/License-MIT-green) ![GitHub](https://img.shields.io/badge/GitHub-Portfolio-black?logo=github) ![VMware](https://img.shields.io/badge/VMware-Lab-blue?logo=vmware)
+![Platform](https://img.shields.io/badge/Platform-Linux-blue) ![Wireshark](https://img.shields.io/badge/Wireshark-Traffic%20Analysis-blue) ![hping3](https://img.shields.io/badge/hping3-Traffic%20Generation-orange) ![License](https://img.shields.io/badge/License-MIT-green) ![GitHub](https://img.shields.io/badge/GitHub-Portfolio-black?logo=github) ![VMware](https://img.shields.io/badge/VMware-Lab-blue?logo=vmware) ![Python](https://img.shields.io/badge/Python-3-blue?logo=python) ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
  
 ---
 ## Information
@@ -68,8 +68,9 @@ dos-ddos-lab/
 15. Skills Demonstrated
 16. Screenshots Index
 17. Packet Capture Index
-18. Conclusion
-19. References
+18. Lab Limitations
+19. Conclusion
+20. References
 
 ---
 
@@ -121,7 +122,13 @@ A DoS attack originates from a single machine using a single NIC, processor, and
 
 **Network**
 
-- VMware virtual networking using NAT and Host-Only adapters.
+VMware Workstation virtual networking.
+
+Attacker: NAT Adapter
+
+Target: Host-Only Adapter
+
+Connectivity was verified before every experiment.
 
 ### Addressing
 
@@ -132,7 +139,7 @@ The Kali Linux attacker VM was configured with a NAT network adapter for interne
 |Kali Linux (Attacker)|192.168.12.128 (NAT)|
 |Metasploitable2 (Victim)|192.168.1.25 (Host-Only)|
 
-The virtual machines were configured using VMware virtual networking. Despite using different virtual adapters, connectivity between the attacker and target was verified before each test using ICMP and service checks.
+Connectivity between the attacker and target virtual machines was verified before every experiment using ICMP echo requests and application-layer service checks.
 
 ### Network Notes
 
@@ -460,7 +467,8 @@ As a final demonstration, multiple attack types were run in combination against 
   <em>Figure 18. Combined attack scenario resulting in degraded Apache2 service availability on the target system.</em>
 </p>
 
-During the combined attack, the Apache2 service became completely unresponsive within seconds. Recovery was achieved by terminating the flood processes, with service restoration confirmed via netstat verification.
+During the combined attack, the Apache2 service became temporarily unavailable to legitimate clients within seconds. Recovery was achieved by terminating the flood processes, with service restoration confirmed using `netstat`.
+
 ---
 
 ## 10. Traffic Analysis (Wireshark)
@@ -619,17 +627,29 @@ For internet-facing production services, routing traffic through a cloud defense
 
 ---
 
-## 18. Conclusion
+## 18. Lab Limitations
+
+This laboratory simulated DoS and DDoS behavior within an isolated VMware environment.
+
+The attacks were generated from a single Kali Linux host using multiple concurrent processes rather than a geographically distributed botnet.
+
+As expected, the experiments demonstrated service degradation and temporary application-layer unavailability instead of a complete operating system crash.
+
+This behavior accurately reflects the objective of DoS/DDoS testing in a controlled educational environment, where the primary goal is to exhaust application and network resources rather than permanently disable the target operating system.
+
+The objective of the laboratory was to analyze attack behavior, traffic characteristics, and defensive techniques rather than reproduce Internet-scale DDoS attacks.
+
+## 19. Conclusion
 
 This project built a complete, self-contained DoS/DDoS lab using only Kali Linux and Metasploitable2, covering five distinct attack primitives — ICMP flood, SYN flood, HTTP flood, TCP flood, and Ping of Death — each tested first as a single-source DoS and then as a locally simulated multi-process DDoS via `tmux`. Every stage was captured independently in Wireshark and compared against a clean baseline, allowing clear identification of each attack's traffic signature at Layer 3, 4, and 7. A combined-attack stage demonstrated cumulative impact on service availability. The project closes with a concrete, honest limitation — the DDoS stage simulates volume rather than true source distribution — and a set of practical next steps (multi-host testing, WAF deployment, IDS signature evaluation) to extend the work further.
 
 ---
 
-## 19. References
+## 20. References
 
 - [OWASP Testing Guide — Denial of Service Methodology](https://owasp.org/www-community/attacks/Denial_of_Service)
-- [Cloudflare Learning Center — Layer 7 vs Layer 4 Mitigation](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/)
 - [CISA & MS-ISAC Joint Guide — Understanding and Responding to DDoS Attacks](https://www.cisa.gov/resources-tools/resources/understanding-and-responding-distributed-denial-service-attacks)
+- [Cloudflare Learning Center — Layer 7 vs Layer 4 Mitigation](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/)
 - [Imperva Distributed Denial of Service (DDoS)](https://www.imperva.com/learn/ddos/denial-of-service/)
 - [Wireshark Documentation](https://www.wireshark.org/docs/)
 - [Metasploitable2 Documentation](https://docs.rapid7.com/metasploit/metasploitable-2-exploitability-guide/)
@@ -641,3 +661,5 @@ This project built a complete, self-contained DoS/DDoS lab using only Kali Linux
 - [DDoS Attack Explained | How to Perform DOS Attack | Ethical Hacking and Penetration Testing](https://youtu.be/04M8X-im3ac?si=e8yiqXIU-xPyy2nE)
 - [How to Install Metasploitable on New VMware Workstation](https://youtu.be/OO7BPfi3DbU?si=OQJc4CRLsBHsmi2X)
 - [i bought a DDoS attack on the DARK WEB (don't do this)](https://youtu.be/eZYtnzODpW4?si=GXrN3MXsielkWkGg)
+
+If you found this project useful, feel free to star the repository.
